@@ -25,27 +25,48 @@ footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:v
 <main>
 <nav><a href="../">Fiber Club</a></nav>
 <h1>Privacy policy</h1>
-<p class="muted">Last updated: November 12, 2026</p>
+<p class="muted">Last updated: November 25, 2026</p>
 
-<p>This policy explains what the Fiber Club iPhone app ("the app") does with your data. The app is published by Sofya Mikhaylova ("we", "us"). If you have a question, write to <a href="mailto:m.sofiyka@gmail.com">m.sofiyka@gmail.com</a>.</p>
+<p>This policy explains what the Fiber Club app for iPhone and iPad ("the app") does with your data. The app is published by Sofya Mikhaylova ("we", "us"). If you have a question, write to <a href="mailto:m.sofiyka@gmail.com">m.sofiyka@gmail.com</a>.</p>
 
 <h2>The short version</h2>
 <ul>
 <li>There is no account. You never give us your name or email to use the app.</li>
-<li>Your food log, goals and stomach check-ins stay on your iPhone.</li>
+<li>Your food log, goals and stomach check-ins stay on your iPhone or iPad.</li>
+<li>A meal photo leaves your device only if you say yes in the app. It then goes through our server to Claude, an AI model made by Anthropic, which names the foods in it. You can take your yes back at any time.</li>
 <li>We count a few anonymous steps (like which setup pages were seen) to improve the app. These counts carry no ID and are not linked to you.</li>
 <li>Subscriptions are handled by Apple and RevenueCat.</li>
 <li>No ads, no ad or attribution SDKs, no Firebase. We never sell your data.</li>
 </ul>
 
-<h2>What stays on your iPhone</h2>
-<p>Everything you log stays on your device: the foods you eat, amounts, water, your fiber goal, your answers in setup, your daily stomach check-ins and the gentle mode setting. Food you type is understood by the app on your device, and nutrient numbers come from the food list built into the app. None of this is sent to us or to anyone else.</p>
+<h2>What stays on your device</h2>
+<p>Everything you log stays on your iPhone or iPad: the foods you eat, amounts, water, your fiber goal, your answers in setup, your daily stomach check-ins and the gentle mode setting. It is also in your own backups of that device, if you make them. Food you type is understood by the app on your device, and nutrient numbers come from the food list built into the app.</p>
+<p>None of this is sent to us or to anyone else, with two exceptions, both described below: a meal photo, when you have allowed it, and anonymous counts of some of your setup answers.</p>
+<p>If you log meals from photos, the app also keeps on your device:</p>
+<ul>
+<li>a small copy of each meal photo you log, as the meal's picture in your log. The full-size photo isn't saved.</li>
+<li>your meal photo choices: whether you allowed photos to be sent, and the foods you corrected after a photo.</li>
+</ul>
+
+<h2>Meal photos</h2>
+<p>You can log a meal by taking a photo of it, or by picking one from your photo library. A photo is sent only after you allow it. The app asks at your first meal photo, before anything is sent. If you say not now, nothing is sent and the app asks again at your next meal photo. You can switch it off at any time in Settings &gt; Your data &gt; Meal photos, and the app then asks again before it sends another. Typing, barcodes and nutrition labels work without it.</p>
+<p>When you have allowed it, this is what happens to a photo:</p>
+<ul>
+<li>On your device first: the photo is made smaller, its location and all other metadata are removed, and any faces the app finds in it are blurred.</li>
+<li>Where it goes: that copy goes to our own server, which runs on Cloudflare, and from there to Claude, an AI model made by Anthropic in the United States. Claude returns the names of the foods it sees and a rough weight for each. Nothing else about you goes to Anthropic with the photo: no name, no account, no identifier and no IP address.</li>
+<li>What our server keeps: no photo and no food names. The photo is held in memory only while it is passed on. To stop misuse, each request carries a signed record of your subscription from Apple, which has no name, email or card details in it, and proof that it comes from a real copy of the app. The server keeps today's count of your photos against a scrambled form of your subscription's ID, and the keys that prove the app is real. The count starts again each day. For each request the server also notes whether it worked, how many foods were named, how large the photo file was and how long it took. Cloudflare, which runs the server, handles the connection as any web host does and sees your IP address to do so. The server itself uses your IP address only to slow down bursts of requests, and its logs don't record it.</li>
+<li>What Anthropic keeps: Anthropic normally deletes the photo within 30 days and doesn't use it to train its models. See <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>.</li>
+<li>The numbers: Claude gives no nutrition numbers. Every nutrient number comes from the food list built into the app, never from the AI.</li>
+<li>On your device afterwards: when you log the meal, a small copy of the photo stays in your log as the meal's picture. The full-size photo isn't saved. If you close the camera without logging, nothing is saved on your device.</li>
+</ul>
+<p>When you open the meal camera, the app asks our server for a one-time code, so that a photo can be sent without a wait. That request carries no photo and nothing about you, and the server stores nothing for it.</p>
+<p>A photo of a meal can show more than your food and can say something about your health. That is why the app sends one only with your permission, and why you can take that permission back whenever you like. A nutrition label photo is different: it is read on your device and never sent.</p>
 
 <h2>Barcode scanning</h2>
 <p>When you scan a barcode, the app sends only the barcode number to <a href="https://world.openfoodfacts.org/">Open Food Facts</a>, a free public food database, to look up that product. Nothing else is sent with it, and we do not store the lookup. Open Food Facts receives the request like any website request. Its own privacy policy applies to that request.</p>
 
 <h2>Nutrition label photos</h2>
-<p>If you take or pick a photo of a nutrition label, the text is read on your iPhone. The photo is never stored and never sent anywhere.</p>
+<p>If you take or pick a photo of a nutrition label, the text is read on your device. The photo is never stored and never sent anywhere.</p>
 
 <h2>Anonymous usage counts</h2>
 <p>To see where the app can be better, the app sends simple counts to our own server (run on Cloudflare). Each step is counted once per install and only added to a daily total. The counts include:</p>
@@ -53,20 +74,32 @@ footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:v
 <li>which setup pages were reached and whether reminders were turned on,</li>
 <li>whether the subscription page was seen or closed, plans tapped, purchases, cancelled or failed purchases and restores,</li>
 <li>that a first food was logged (never what it was) and that the app was opened again later,</li>
+<li>whether you allowed meal photos or said not now at the camera, that a meal was logged from a photo (never what was in it) and that you answered a question about a meal (never what you answered),</li>
 <li>anonymous counts of setup answers: age band, diet, liked foods, what you want more of, and how your stomach is most days,</li>
-<li>the phone's region setting, the app's language, version and kind of build, and the day the app was first opened.</li>
+<li>your device's region setting, the app's language, version and kind of build, and the day the app was first opened.</li>
 </ul>
-<p>No ID of any kind is sent. The server does not keep IP addresses or request logs. These counts are not linked to you and cannot be used to identify you. Your answer about your stomach is only ever part of an anonymous count, and your daily check-ins and gentle mode setting never leave your phone. The app does not use location services.</p>
+<p>No ID of any kind is sent. The server does not keep IP addresses or request logs. These counts are not linked to you and cannot be used to identify you. Your answer about your stomach is only ever part of an anonymous count, and your daily check-ins and gentle mode setting never leave your device. The app does not use location services.</p>
 
 <h2>Subscriptions</h2>
 <p>Payments are made through Apple. We never see your payment details. The app uses <a href="https://www.revenuecat.com/privacy">RevenueCat</a> to check and manage your subscription. To do this, RevenueCat processes:</p>
 <ul>
 <li>your purchase history (receipts, transactions and subscription status), to unlock what you paid for and to show us revenue totals,</li>
-<li>a random app user ID created on your iPhone (the app never gives RevenueCat your name, email or Apple Account),</li>
+<li>a random app user ID created on your device (the app never gives RevenueCat your name, email or Apple Account),</li>
 <li>a device identifier: Apple's identifier for vendor, sent with each request,</li>
 <li>advertising data: Apple's AdServices token, which tells RevenueCat whether the install came from one of our Apple Search Ads ads, and which campaign. We use it only to see which of our own ads lead to subscriptions.</li>
 </ul>
 <p>This data is linked to that random ID and your device, but not to your name or email. It is not used to track you across other companies' apps or websites. The app does not read the advertising identifier (IDFA) and does not ask to track you.</p>
+
+<h2>Who receives what</h2>
+<p>These are the only companies that receive anything from the app, and what each one gets:</p>
+<ul>
+<li>Apple: your payment and your subscription, and its own rating prompt. Apple also confirms that your copy of the app is real before a meal photo can be sent.</li>
+<li>RevenueCat: your purchase history, a random app user ID, a device identifier and Apple Search Ads data, as described under Subscriptions.</li>
+<li>Anthropic (United States): a meal photo, when you have allowed it, to name the foods in it.</li>
+<li>Cloudflare: it runs our two servers, the one that adds up the anonymous counts and the one that passes meal photos to Anthropic. As the host it handles the connection and sees your IP address to do so.</li>
+<li>Open Food Facts: the barcode number, when you scan a barcode.</li>
+</ul>
+<p>None of them gets your food log or your stomach check-ins.</p>
 
 <h2>Ratings</h2>
 <p>The app may show Apple's own rating prompt. Apple handles it.</p>
@@ -79,8 +112,11 @@ footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:v
 <li>We do not sell or rent your data.</li>
 </ul>
 
-<h2>Deleting your data</h2>
-<p>You can erase everything with Settings &gt; Delete all data in the app. Deleting the app also deletes all data stored on your iPhone. The anonymous counts cannot be traced back to you, so there is nothing in them to delete. To ask RevenueCat about your subscription data, write to us and we will help.</p>
+<h2>Taking back permission and deleting your data</h2>
+<p>To stop sending meal photos, turn off Settings &gt; Your data &gt; Meal photos in the app. Nothing more is sent unless you allow it again.</p>
+<p>You can erase everything with Settings &gt; Your data &gt; Delete all data in the app. This also removes the small copies of your meal photos, the foods you corrected and your permission to send photos. Deleting the app also deletes all data stored on your device.</p>
+<p>Meal photos already sent: our server keeps none, so there is nothing to delete there. Anthropic normally deletes its copy within 30 days. The meal photo server holds only a daily count of photos and the app's keys, against a scrambled form of your subscription's ID.</p>
+<p>The anonymous counts cannot be traced back to you, so there is nothing in them to delete. To ask about what the meal photo server holds, or to ask RevenueCat about your subscription data, write to us and we will help.</p>
 
 <h2>Children</h2>
 <p>The app is not directed at children under 13, and we do not knowingly collect data from them.</p>
